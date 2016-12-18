@@ -1,0 +1,19 @@
+{
+  "name": "serverless-with-dynamodb-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://SeiyaMogami@github.com/SeiyaMogami/serverless-with-dynamo-template.git"
+  },
+  "author": "SeiyaMogami",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SeiyaMogami/serverless-with-dynamo-template/issues"
+  },
+  "homepage": "https://github.com/SeiyaMogami/serverless-with-dynamo-template#readme"
+}

@@ -1,0 +1,44 @@
+service: serverless-with-dynamodb-template
+frameworkVersion: "=1.4.0"
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+  stage: ${opt:stage}
+  region: ap-northeast-1
+  memorySize: 128 # default 1024MB
+  iamRoleStatements:
+   - Effect: "Allow"
+     Action:
+       - "dynamodb:*"
+     Resource: "arn:aws:dynamodb:*"
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: users
+          method: get
+      - http:
+          path: users
+          method: post
+
+resources:
+    Resources:
+        # ref: http://docs.aws.amazon.com/ja_jp/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-attributedef
+        TemplateDynamoTable:
+            Type: AWS::DynamoDB::Table
+            Properties:
+                AttributeDefinitions:
+                    -
+                        AttributeName: uid
+                        AttributeType: S # String:S Number:N Binary:B
+                KeySchema:
+                    -
+                        AttributeName: uid
+                        KeyType: HASH # HASH or RANGE
+                ProvisionedThroughput:
+                    ReadCapacityUnits: 3
+                    WriteCapacityUnits: 3
+                TableName: test-table
